@@ -10,6 +10,8 @@ console.log(path.join(__dirname, '../public'))
 
 const app = express()
 
+const port = process.env.PORT || 3000
+
 const viewPath = path.join(__dirname,'../templates/views')
 const partialsPath = path.join(__dirname,'../templates/partials')
 
@@ -30,19 +32,7 @@ app.get('',(req, res) =>{
 })
 // After setting up public/help.html this code doesnt need to be here
 
-/*app.get('/help',(req, res) => {
-    res.send({
-        name: 'Kadir',
-        age : 23 ,
-        hobbies : ['games', 'reading', 'guitar']
-    })
-})*/
 
-// After setting up public/about.html this code doesnt need to be here
-
-/*app.get('/about',(req,res) => {
-    res.send('<h1>About</h1>')
-})*/
 
 app.get('/about', (req, res) => {
     res.render('about', {
@@ -78,12 +68,6 @@ app.get('/weather', (req, res) => {
         })
     })
 
-    // res.send({
-    //     Temperature : '37 degree',
-    //     probability: '0%' ,
-    //     windspeed: '34k/h',
-    //     address: req.query.address
-    // })
 
 app.get('/products', (req, res) => {
     if(!req.query.search)
@@ -114,6 +98,6 @@ app.get('*', (req, res) => {
     })
 })
 
-app.listen(3000, () => {
-    console.log('Server is up on port 3000')
+app.listen(port, () => {
+    console.log('Server is up on port ' + port)
 })
